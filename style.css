@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    background-image: url('background.jpg'); /* Укажите путь к изображению */
+    background-size: cover; /* Растянуть на весь экран */
+    background-position: center; /* Центрирование */
+    background-repeat: no-repeat; /* Без повторения */
+    background-attachment: fixed; /* Фиксированный фон при прокрутке */
+
+}
+
+h1, h2 {
+    margin: 0;
+    padding: 0.5em 0;
+    font-weight: normal;
+    font-size: 50px;
+}
+
+p {
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    font-size: 1.2em;
+    transition: font-size 0.3s ease;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #444;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em 0;
+}
+
+.menu-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1em 0;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+}

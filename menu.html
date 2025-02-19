@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restarite - Меню</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="menu.html">Меню</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2 style="color: white; display: inline-block; background-color: rgba(0, 0, 0, 0.6); padding: 10px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-size: 50px; text-align: right; padding-right: 2%;">Restarite предлагает вам огромный выбор блюд и напитков. Просто выберите блюда ниже и покажите официанту.</h2>
+<div id="menu">
+    <h3 style="color: white; display: inline-block; background-color: rgba(0, 0, 0, 0.6); padding: 10px;">Выберите категорию:</h3>
+    <select id="categorySelect" onchange="showDishes(this.value)">
+        <option value="">--Выберите категорию--</option>
+        <option value="starters">Закуски</option>
+        <option value="main_courses">Основные блюда</option>
+        <option value="desserts">Десерты</option>
+        <option value="drinks">Напитки</option>
+    </select>
+    <div id="dishes" style="margin-top: 20px;"></div>
+</div>
+
+<div id="selectedDishes" style="margin-top: 40px;">
+    <h3 style="color: white; display: inline-block; background-color: rgba(0, 0, 0, 0.6); padding: 10px;">Выбранные блюда:</h3>
+    <ul style="color: white; display: inline-block; background-color: rgba(0, 0, 0, 0.6); padding: 10px;" id="selectedDishesList"></ul>
+</div>
+
+<footer style="text-align: center; font-family: 'Courier New', Courier, monospace;">
+    <p>&copy; 2025 Restarite. All rights reserved.</p>
+</footer>
+
+<script>
+    const menu = {
+        starters: ["Овощной салат", "Соленые огурцы", "Сырная тарелка", "Орехи", "Бутерброды"],
+        main_courses: ["Стейк", "Паста", "Омлет", "Скрембл"],
+        desserts: ["Яблоко", "Нори", "Хлопья подушечки", "Хлопья"],
+        drinks: ["Кофе", "Чай черный", "Чай зеленый", "Молоко"]
+    };
+
+    function showDishes(category) {
+        const dishesDiv = document.getElementById('dishes');
+        dishesDiv.innerHTML = '';
+        if (category) {
+            const dishes = menu[category];
+            dishes.forEach(dish => {
+                const dishElement = document.createElement('div');
+                dishElement.style.display = 'inline-block';
+                dishElement.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+                dishElement.style.padding = '10px';
+                dishElement.style.color = 'white';
+                dishElement.innerHTML = `<input type="checkbox" value="${dish}" onchange="selectDish(this)"> ${dish}`;
+                dishesDiv.appendChild(dishElement);
+            });
+        }
+    }
+
+    function selectDish(checkbox) {
+        const selectedDishesList = document.getElementById('selectedDishesList');
+        if (checkbox.checked) {
+            const listItem = document.createElement('li');
+            listItem.textContent = checkbox.value;
+            listItem.setAttribute('data-dish', checkbox.value);
+            selectedDishesList.appendChild(listItem);
+        } else {
+            const items = selectedDishesList.querySelectorAll('li');
+            items.forEach(item => {
+                if (item.getAttribute('data-dish') === checkbox.value) {
+                    selectedDishesList.removeChild(item);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>
