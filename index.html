@@ -4,23 +4,558 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restarite - Главная</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        header {
+            background-color: rgba(20, 20, 20, 0.95);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 32px;
+            color: #d4af37;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #d4af37, #f5f5dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: block;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #d4af37;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        nav a:hover::after {
+            width: 80%;
+        }
+        
+        nav a.active {
+            background: rgba(212, 175, 55, 0.15);
+        }
+        
+        nav a.active::after {
+            width: 80%;
+        }
+        
+        .hero {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            text-align: right;
+        }
+        
+        .hero h2 {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #d4af37, #f5f5dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1.2s ease;
+            background: rgba(20, 20, 20, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(to right, #d4af37, #b8860b);
+            color: #1a1a1a;
+            padding: 18px 45px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            text-decoration: none;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .btn i {
+            font-size: 20px;
+        }
+        
+        .features {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 42px;
+            background: linear-gradient(to right, #d4af37, #f5f5dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            border-color: #d4af37;
+        }
+        
+        .feature-card i {
+            font-size: 50px;
+            color: #d4af37;
+            margin-bottom: 25px;
+        }
+        
+        .feature-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #f5f5dc;
+        }
+        
+        .feature-card p {
+            font-size: 18px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .gallery {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 0.3;
+        }
+        
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+        }
+        
+        .reservation {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .reservation h2 {
+            font-size: 42px;
+            background: linear-gradient(to right, #d4af37, #f5f5dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .reservation p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            opacity: 0.7;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(50, 50, 50, 0.7);
+            color: #d4af37;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            transform: translateY(-5px);
+        }
+        
+        .hours {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .hours div {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 250px;
+        }
+        
+        .hours h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px;
+            }
+            
+            .hero h2 {
+                font-size: 48px;
+            }
+            
+            .hero p {
+                font-size: 20px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .features-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="menu.html">Меню</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>Restarite</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="menu.html"><i class="fas fa-book-open"></i> Меню</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> О нас</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <section id="home">
-        <h2 style="color: white;background-color: rgba(0, 0, 0, 0.6); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-size: 75px; text-align: right; padding: 10px; padding-right: 2%; display: inline-block;">Добро пожаловать в Restarite!</h2>
-        <p style="color: white; background-color: rgba(0, 0, 0, 0.6); padding: 10px; display: inline-block; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-size: 25px; text-align: right;">Restarite - это ресторан, который предлагает вам лучшие блюда и напитки. Мы гарантируем
-            вам удовольствие от нашего меню. Посетите наш ресторан и насладитесь
-            вкусными блюдами и напитками.</p>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Добро пожаловать в Restarite!</h2>
+            <p>Restarite - это ресторан, который предлагает вам лучшие блюда и напитки. Мы гарантируем вам удовольствие от нашего меню. Посетите наш ресторан и насладитесь вкусными блюдами и напитками.</p>
+            <a href="menu.html" class="btn"><i class="fas fa-book-open"></i> Посмотреть меню</a>
+        </div>
     </section>
+    
+    <section class="features">
+        <div class="section-title">
+            <h2>Почему выбирают нас</h2>
+            <p>Уникальное сочетание качества, атмосферы и сервиса</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Изысканная кухня</h3>
+                <p>Наши блюда готовятся из свежайших продуктов по авторским рецептам шеф-повара с многолетним опытом работы в лучших ресторанах Европы.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-wine-glass-alt"></i>
+                <h3>Премиальные напитки</h3>
+                <p>Обширная винная карта с эксклюзивными сортами вин и авторские коктейли, которые вы не попробуете больше нигде.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-music"></i>
+                <h3>Атмосфера</h3>
+                <p>Уютный интерьер в стиле ар-деко, живая музыка по вечерам и безупречный сервис создают неповторимую атмосферу для вашего отдыха.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="gallery">
+        <div class="section-title">
+            <h2>Наше пространство</h2>
+            <p>Элегантный интерьер и уютная атмосфера</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Интерьер ресторана">
+                <div class="caption">Основной зал</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Барная стойка">
+                <div class="caption">Барная зона</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Летняя терраса">
+                <div class="caption">Летняя терраса</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Блюда ресторана">
+                <div class="caption">Фирменные блюда</div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="footer">
+        
+            
+            <div>
+                <h3>Контакты</h3>
+                <p>+7 (916) 861-47-71</p>
+                <p>Telegram: <a href="t.me/@im_a_spaghetti">@im_a_spaghetti</a></p>
+            </div>
+        </div>
+        
+        
+        <p>© 2025 Ресторан Restarite. Все права защищены.</p>
+    </div>
 </body>
 </html>
